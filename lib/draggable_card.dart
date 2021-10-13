@@ -13,6 +13,7 @@ class DraggableCard extends StatefulWidget {
   final Function(double distance)? onSlideUpdate;
   final Function(SlideRegion? slideRegion)? onSlideRegionUpdate;
   final Function(SlideDirection? direction)? onSlideOutComplete;
+  final EdgeInsetsGeometry? padding;
 
   DraggableCard(
       {this.card,
@@ -20,7 +21,8 @@ class DraggableCard extends StatefulWidget {
       this.onSlideUpdate,
       this.onSlideOutComplete,
       this.slideTo,
-      this.onSlideRegionUpdate});
+      this.onSlideRegionUpdate,
+      this.padding});
 
   @override
   _DraggableCardState createState() => _DraggableCardState();
@@ -286,7 +288,7 @@ class _DraggableCardState extends State<DraggableCard>
         key: profileCardKey,
         width: anchorBounds?.width,
         height: anchorBounds?.height,
-        padding: const EdgeInsets.all(16.0),
+        padding: widget.padding??const EdgeInsets.all(16.0),
         child: GestureDetector(
           onPanStart: _onPanStart,
           onPanUpdate: _onPanUpdate,

@@ -8,12 +8,15 @@ class SwipeCards extends StatefulWidget {
   final IndexedWidgetBuilder itemBuilder;
   final MatchEngine matchEngine;
   final Function onStackFinished;
+  final EdgeInsetsGeometry? padding;
 
   const SwipeCards(
       {Key? key,
       required this.matchEngine,
       required this.onStackFinished,
-      required this.itemBuilder})
+      required this.itemBuilder,
+      this.padding
+      })
       : super(key: key);
 
   @override
@@ -149,6 +152,7 @@ class _SwipeCardsState extends State<SwipeCards> {
           DraggableCard(
             isDraggable: false,
             card: _buildBackCard(),
+            padding: widget.padding,
           ),
         if (widget.matchEngine.currentItem != null)
           DraggableCard(
@@ -157,6 +161,7 @@ class _SwipeCardsState extends State<SwipeCards> {
             onSlideUpdate: _onSlideUpdate,
             onSlideRegionUpdate: _onSlideRegion,
             onSlideOutComplete: _onSlideOutComplete,
+            padding: widget.padding,
           )
       ],
     );
